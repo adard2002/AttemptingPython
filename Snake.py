@@ -21,7 +21,7 @@ class cube(object):
 
 class snake(object):
   body = []
-  turns = {}
+  turns = {} #kinda like a dictionary or set
   def __init__(self, color, pos):
     self.color = color
     self.head = cube(pos) # Head of the snake or starting position of the snake
@@ -30,7 +30,32 @@ class snake(object):
     self.dirny = 1
 
     def move(self):
-      pass
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          pygame.quit()
+
+        keys = pygame.key.get_pressed()
+        
+        for key in keys: 
+          if keys[pygame.K_LEFT]:
+            self.dirnx = -1
+            self.dirny = 0
+            self.turns[self.head.pos[:]] = [self.dirnx, self.dirny] # adding current position of the head of the snake and is set to which direction we turned, 
+            
+          if keys[pygame.K_RIGHT]:
+            self.dirnx = 1
+            self.dirny = 0
+            self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
+          
+          if keys[pygame.K_UP]:
+            self.dirnx = 0
+            self.dirny = -1
+            self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
+
+          if keys[pygame.K_DOWN]:
+            self.dirnx = 0
+            self.dirny = 1
+            self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
 
     def reset(self, pos):
       pass
