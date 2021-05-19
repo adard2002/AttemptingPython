@@ -9,6 +9,7 @@
 I am going to attempt to make at least 1 game and maybe a couple others. I am going to try and make the games Snake, Pong, and Tetris.
 
 ## Things I've learned about Python
+- Run python by right-clicking on the file you want to run and press 'Run Python file in terminal'
 
 
 ## Snake
