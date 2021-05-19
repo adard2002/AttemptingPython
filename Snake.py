@@ -42,20 +42,35 @@ class snake(object):
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx, self.dirny] # adding current position of the head of the snake and is set to which direction we turned, 
             
-          if keys[pygame.K_RIGHT]:
+          elif keys[pygame.K_RIGHT]:
             self.dirnx = 1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
           
-          if keys[pygame.K_UP]:
+          elif keys[pygame.K_UP]:
             self.dirnx = 0
             self.dirny = -1
             self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
 
-          if keys[pygame.K_DOWN]:
+          elif keys[pygame.K_DOWN]:
             self.dirnx = 0
             self.dirny = 1
-            self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
+            self.turns[self.head.pos[:]] = [self.dirnx, self.dirny] # The [:] is an arrow?
+
+        for i, c in enumerate(self.bodoy): #looking through list of pos we have. i stands for index and c stands for cube
+          p = c.pos[:]
+          if p in self.turns:
+            turn = self.turns[p]
+            c.move(turn[0], turn[1]) 
+            if i ==len(self.body)-1:
+              self.turns.pop(p)
+          else: 
+            if c.dirnx == -1 and c.pos[0] <= 0: c.pos = (c.rows-1, c.pos[1]) # checks whether or not we are moving off the screen. This is when you are for example making your snake run into the right wall it will continue and come back through the left side of the screen and move across the screen.
+            elif c.dirnx == 1 and c.pos[0] >= c.rows-1: c.pos = (0,c.pos[1])
+            elif c.dirny == 1 and c.pos[1] >= c.rows-1: c.pos = (c.pos[0], 0)
+            elif c.dirny == -1 and c.pos[1] <= 0: c.pos = (c.pos[0], c.rows-1)
+            else: c.move(c.dirnx,c.dirny) 
+
 
     def reset(self, pos):
       pass
