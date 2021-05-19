@@ -57,12 +57,12 @@ class snake(object):
             self.dirny = 1
             self.turns[self.head.pos[:]] = [self.dirnx, self.dirny] # The [:] is an arrow?
 
-        for i, c in enumerate(self.bodoy): #looking through list of pos we have. i stands for index and c stands for cube
+        for i, c in enumerate(self.body): #looking through list of pos we have. i stands for index and c stands for cube
           p = c.pos[:]
           if p in self.turns:
             turn = self.turns[p]
             c.move(turn[0], turn[1]) 
-            if i ==len(self.body)-1:
+            if i == len(self.body)-1:
               self.turns.pop(p)
           else: 
             if c.dirnx == -1 and c.pos[0] <= 0: c.pos = (c.rows-1, c.pos[1]) # checks whether or not we are moving off the screen. This is when you are for example making your snake run into the right wall it will continue and come back through the left side of the screen and move across the screen.
@@ -79,7 +79,11 @@ class snake(object):
       pass
 
     def draw(self, surface):
-      pass
+      for i, c in enumerate(self.body):
+        if i == 0:
+          c.draw(surface, True)
+        else:
+          c.draw(surface)
 
 def drawGrid(w, rows, surface):
   sizeBetween = w // rows # width integer divided by rows, since we are figuring out the size between the lines being drawn to form the cubes. makes sure there is no No large decimal numbers

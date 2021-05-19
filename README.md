@@ -10,6 +10,7 @@ I am going to attempt to make at least 1 game and maybe a couple others. I am go
 
 ## Things I've learned about Python
 - Run python by right-clicking on the file you want to run and press 'Run Python file in terminal'
+- Sometimes you might get an error because maybe you have indentation that is off. It's very organized and looks for incorrect indentation stuff which I really like
 
 
 ## Snake
