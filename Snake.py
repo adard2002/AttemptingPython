@@ -20,7 +20,14 @@ class cube(object):
       pass
 
 class snake(object):
+  body = []
+  turns = {}
   def __init__(self, color, pos):
+    self.color = color
+    self.head = cube(pos) # Head of the snake or starting position of the snake
+    self.body.append(self.head) #Appending the body of the snake to the head
+    self.dirnx = 0 # Direction snake is moving
+    self.dirny = 1
 
     def move(self):
       pass
@@ -39,7 +46,7 @@ def drawGrid(w, rows, surface):
 
   x = 0
   y = 0
-  for 1 in range(rows):
+  for l in range(rows):
     x = x + sizeBetween
     y = y + sizeBetween
 
@@ -60,10 +67,10 @@ def message_box(subject, content):
   pass
 
 def main():
-  global width, rows
+  global width, rows, s, snack
   width = 500
   rows = 20 # if you have like 10 here instead the game will not last as long because there will not be as much room for the snake to go. The number must go in 500 evenly. How many rows or columns you are going to have. If you want it to be harder you can set it to 10.
-  s = snake((189, 255, 198, (10,10))) # creates the snakes color and position, in this case the snake is starting in the center
+  s = snake((189, 255, 198), (10,10)) # creates the snakes color and position, in this case the snake is starting in the center
   win = pygame.display.set_mode((width, width)) # win will create a surface and you don't need a height because they are gonna be 500x500/same size
   flag = True
 
